@@ -24,7 +24,7 @@ pipeline {
                                 sshTransfer(
                                     cleanRemote: false,
                                     excludes: '',
-                                    execCommand: "echo 'PROJECT_NAME=${PROJECT_NAME}' > ${PROJECT_NAME}${BUILD_NUMBER}/.env && docker build -t ${PROJECT_NAME} -t registry.projectweek.be/${PROJECT_NAME} ${PROJECT_NAME}${BUILD_NUMBER}/ & docker push registry.projectweek.be/${PROJECT_NAME} && docker stack rm ${PROJECT_NAME} && cd ${PROJECT_NAME}${BUILD_NUMBER} && docker-compose config | docker stack deploy --compose-file - ${PROJECT_NAME} && cd ../ && rm -rf ${PROJECT_NAME}${BUILD_NUMBER}",
+                                    execCommand: "echo 'PROJECT_NAME=${PROJECT_NAME}' > ${PROJECT_NAME}${BUILD_NUMBER}/.env && docker build -t ${PROJECT_NAME} -t registry.projectweek.be/${PROJECT_NAME} ${PROJECT_NAME}${BUILD_NUMBER}/ & docker push registry.projectweek.be/${PROJECT_NAME} && cd ${PROJECT_NAME}${BUILD_NUMBER} && docker-compose config | docker stack deploy --compose-file - ${PROJECT_NAME} && cd ../ && rm -rf ${PROJECT_NAME}${BUILD_NUMBER}",
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
