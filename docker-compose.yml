@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  web:
+    image: registry.projectweek.be/${PROJECT_NAME}
+    networks:
+      - Traefik_default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_NAME}.projectweek.be`)"
+      - "traefik.http.routers.${PROJECT_NAME}.entrypoints=web, websecure"
+      - "traefik.http.services.${PROJECT_NAME}.loadbalancer.server.port=8080"
+      - "traefik.http.routers.${PROJECT_NAME}.tls.certresolver=myhttpchallenge"
+      - "traefik.docker.network=Traefik_default"
+
+networks:
+  Traefik_default:
+    external: true
