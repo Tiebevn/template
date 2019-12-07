@@ -18,7 +18,9 @@ pipeline {
         }
         stage('Docker'){
             steps{
-                docker.build "${PROJECT_NAME}"
+                script {
+                    docker.build "${PROJECT_NAME}"
+                }
             }
         }
         stage('Publish over SSH') {
