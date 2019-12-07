@@ -20,7 +20,7 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile.build'
-                    label "${PROJECT_NAME}"
+                    label "docker"
                 }
             }
             steps {
