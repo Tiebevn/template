@@ -64,7 +64,10 @@ pipeline {
     }
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
+            node('Something'){
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                junit 'target/surefire-reports/*.xml'
+            }
         }
     }
 }
