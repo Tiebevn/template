@@ -1,19 +1,31 @@
 pipeline {
-    agent {
-    label 'maven'
-    }
+    agent none
     environment {
         PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
     }
     stages {
         stage('Build') {
+            agent {
+                    label 'maven'
+            }
             steps {
                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
+            agent {
+                    label 'maven'
+             }
             steps {
                 sh 'mvn test'
+            }
+        }
+        stage('Build Docker Container') {
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.build'
+                    label "${PROJECT_NAME}"
+                }
             }
         }
         stage('Publish over SSH') {
