@@ -26,9 +26,9 @@ pipeline {
                     filename 'Dockerfile.build'
                     label "${PROJECT_NAME}"
                 }
-                steps {
-                    echo 'Building Dockerfile'
-                }
+            }
+            steps {
+                echo 'Building Dockerfile'
             }
         }
         stage('Publish over SSH') {
