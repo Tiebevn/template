@@ -16,17 +16,6 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Build Docker Container') {
-            agent {
-                dockerfile {
-                    filename 'Dockerfile.build'
-                    label "docker"
-                }
-            }
-            steps {
-                echo 'Building Dockerfile'
-            }
-        }
         stage('Publish over SSH') {
             steps {
                 sshPublisher(
@@ -60,10 +49,10 @@ pipeline {
     }
     post {
         always {
-            node('Something'){
+
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
                 junit 'target/surefire-reports/*.xml'
-            }
+
         }
     }
 }
