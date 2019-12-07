@@ -17,6 +17,9 @@ pipeline {
             }
         }
         stage('Docker'){
+            agent {
+                    label 'docker'
+            }
             steps{
                 script {
                     docker.build "${PROJECT_NAME}"
