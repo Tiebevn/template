@@ -5,6 +5,7 @@ pipeline {
     environment {
         REGISTRY = "registry.projectweek.be"
         PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+        DOCKER_IMAGE = ''
     }
     stages {
         stage('Build') {
@@ -23,7 +24,8 @@ pipeline {
             }
             steps{
                 script {
-                    docker.build "${REGISTRY}/${PROJECT_NAME}:dev"
+                    DOCKER_IMAGE = docker.build "${REGISTRY}/${PROJECT_NAME}:dev"
+                    DOCKER_IMAGE.push()
                 }
             }
         }
