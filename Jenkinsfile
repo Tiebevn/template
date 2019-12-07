@@ -3,6 +3,7 @@ pipeline {
         label 'maven'
     }
     environment {
+        REGISTRY = "registry.projectweek.be"
         PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
     }
     stages {
@@ -22,7 +23,7 @@ pipeline {
             }
             steps{
                 script {
-                    docker.build "${PROJECT_NAME}"
+                    docker.build "${REGISTRY}/${PROJECT_NAME}:dev"
                 }
             }
         }
