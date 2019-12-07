@@ -16,6 +16,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Docker'){
+            steps{
+                docker.build ${PROJECT_NAME}
+            }
+        }
         stage('Publish over SSH') {
             steps {
                 sshPublisher(
