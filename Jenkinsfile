@@ -1,5 +1,5 @@
 pipeline {
-    agent {maven}
+    agent {label: 'maven'}
     environment {
         PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
     }
