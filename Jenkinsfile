@@ -14,11 +14,13 @@ pipeline {
             }
         }
         stage('Test') {
+        parallel {
+            stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-        stage('Docker'){
+            stage('Build Docker Image'){
             agent {
                     label 'docker'
             }
@@ -28,6 +30,8 @@ pipeline {
                     DOCKER_IMAGE.push()
                 }
             }
+            }
+        }
         }
         stage('Publish over SSH') {
             steps {
