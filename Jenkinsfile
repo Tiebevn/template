@@ -8,18 +8,14 @@ pipeline {
         DOCKER_IMAGE = ''
     }
     stages {
+        
         stage('Build') {
+        parallel {
+            stage('Build') {
             steps {
                sh 'mvn -B -DskipTests clean package'
             }
-        }
-        stage('Test') {
-        parallel {
-            stage('Test') {
-            steps {
-                sh 'mvn test'
             }
-        }
             stage('Build Docker Image'){
             agent {
                     label 'docker'
@@ -32,6 +28,11 @@ pipeline {
             }
             }
         }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
         }
         stage('Publish over SSH') {
             steps {
