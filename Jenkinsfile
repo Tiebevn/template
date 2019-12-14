@@ -4,7 +4,7 @@ pipeline {
     }
     environment {
         REGISTRY = "registry.projectweek.be"
-        PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+        PROJECT_NAME = env.GIT_URL.replaceFirst(/^.*\/(?:pw2-)?([^\/]+?).git$/, '$1')
         DOCKER_IMAGE = ''
     }
     stages {
