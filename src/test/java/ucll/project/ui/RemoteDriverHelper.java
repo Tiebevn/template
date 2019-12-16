@@ -12,10 +12,14 @@ public class RemoteDriverHelper {
     private static WebDriver driver;
 
     public static WebDriver getDriver() throws MalformedURLException {
-        DesiredCapabilities capability = DesiredCapabilities.firefox();
-        driver = new RemoteWebDriver(capability);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        return driver;
+        if (IsRunningInsideDocker.isRunningInsideDocker()) {
+            DesiredCapabilities capability = DesiredCapabilities.firefox();
+            driver = new RemoteWebDriver(capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            return driver;
+        } else {
+            return driver;
+        }
     }
 }
