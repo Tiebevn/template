@@ -16,6 +16,7 @@ pipeline {
                 script {
                     DOCKER_IMAGE = docker.build "${REGISTRY}/${PROJECT_NAME}:dev"
                     DOCKER_IMAGE.push()
+                    sh 'sleep 60'
                 }
             }
             }
