@@ -6,12 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,7 +17,7 @@ public class UsersPageTest {
 
     @BeforeClass
     public static void SetupDriver() throws MalformedURLException {
-        driver = RemoteDriverHelper.getDriver();
+        driver = DriverHelper.getDriver();
     }
 
     @AfterClass
@@ -35,7 +31,7 @@ public class UsersPageTest {
      */
     @Test
     public void VisitUsersPageTest() {
-        driver.get(Config.baseURL());
+        driver.get(Config.BASE_URL);
         WebElement link = driver.findElement(By.xpath("//a[text() = 'Users']"));
         link.click();
         assertEquals("All users", driver.getTitle());

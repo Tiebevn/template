@@ -16,7 +16,7 @@ public class HomePageTest {
     @BeforeClass
     public static void SetupDriver() throws MalformedURLException {
         // Setup the Chrome driver for the whole class
-        driver = RemoteDriverHelper.getDriver();
+        driver = DriverHelper.getDriver();
     }
 
     @AfterClass
@@ -31,7 +31,7 @@ public class HomePageTest {
     @Test
     public void VisitHomePageTest() {
 
-        driver.get(Config.baseURL());
+        driver.get(Config.BASE_URL);
         assertEquals("Hello world!", driver.getTitle());
 
     }
