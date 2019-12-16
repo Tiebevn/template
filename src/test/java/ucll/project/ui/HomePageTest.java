@@ -31,7 +31,7 @@ public class HomePageTest {
     @Test
     public void VisitHomePageTest() {
 
-        driver.get(Config.BASE_URL);
+        driver.get(Config.baseURL());
         assertEquals("Hello world!", driver.getTitle());
 
     }

@@ -1,6 +1,7 @@
 package ucll.project.ui;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -19,6 +20,8 @@ public class RemoteDriverHelper {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             return driver;
         } else {
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
             return driver;
         }
     }

@@ -21,10 +21,7 @@ public class UsersPageTest {
 
     @BeforeClass
     public static void SetupDriver() throws MalformedURLException {
-        DesiredCapabilities capability = DesiredCapabilities.firefox();
-        driver = new RemoteWebDriver(capability);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver = RemoteDriverHelper.getDriver();
     }
 
     @AfterClass
@@ -38,7 +35,7 @@ public class UsersPageTest {
      */
     @Test
     public void VisitUsersPageTest() {
-        driver.get(Config.BASE_URL);
+        driver.get(Config.baseURL());
         WebElement link = driver.findElement(By.xpath("//a[text() = 'Users']"));
         link.click();
         assertEquals("All users", driver.getTitle());
