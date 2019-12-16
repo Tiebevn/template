@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'maven'
+        label 'selenium'
     }
     environment {
         REGISTRY = "registry.projectweek.be"
@@ -30,9 +30,6 @@ pipeline {
         }
         }
         stage('Test') {
-	    agent {
-            	   label 'selenium'
-	    }
             steps {
                 sh 'mvn test'
             }
