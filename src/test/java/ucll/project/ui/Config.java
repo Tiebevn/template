@@ -1,7 +1,7 @@
 package ucll.project.ui;
 
 public class Config {
-    public static final String BASE_URL="https://dev.template.projectweek.be";
+    public static String BASE_URL="https://dev.template.projectweek.be";
 
 
 

@@ -28,6 +28,7 @@ public class DriverHelper {
                 ChromeDriver driver;
                 driver = new ChromeDriver();
                 driver.manage().window().maximize();
+                Config.BASE_URL = "http://localhost:8080";
                 return driver;
             }
     }
