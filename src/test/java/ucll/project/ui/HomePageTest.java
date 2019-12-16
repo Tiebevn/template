@@ -5,6 +5,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
+import java.net.MalformedURLException;
+
 import static org.junit.Assert.assertEquals;
 
 public class HomePageTest {
@@ -12,9 +14,9 @@ public class HomePageTest {
     private static WebDriver driver;
 
     @BeforeClass
-    public static void SetupDriver() {
+    public static void SetupDriver() throws MalformedURLException {
         // Setup the Chrome driver for the whole class
-        driver = ChromeDriverHelper.getDriver();
+        driver = RemoteDriverHelper.getDriver();
     }
 
     @AfterClass
