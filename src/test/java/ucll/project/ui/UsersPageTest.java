@@ -21,7 +21,7 @@ public class UsersPageTest {
 
     @BeforeClass
     public static void SetupDriver() throws MalformedURLException {
-        DesiredCapabilities capability = DesiredCapabilities.chrome();
+        DesiredCapabilities capability = DesiredCapabilities.firefox();
         driver = new RemoteWebDriver(capability);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
