@@ -28,6 +28,15 @@ pipeline {
                 }
             }
 
+            stage('Test') {
+            agent {
+                label 'maven'
+            }
+                steps {
+                    sh 'mvn test'
+                }
+            }
+
             
             stage("Build Docker Image for production"){
                 when { branch 'master' }
