@@ -23,7 +23,7 @@ pipeline {
             stage('Deploy to production'){
                 steps {
                     script {
-                        sh curl -X POST http://projectweek.be:9000/api/webhooks/b72aa1ac-8e90-433f-9389-0b74147c1fcd
+                        sh 'curl -X POST http://projectweek.be:9000/api/webhooks/b72aa1ac-8e90-433f-9389-0b74147c1fcd'
                     }
                 }
             }
