@@ -1,4 +1,7 @@
 pipeline {
+    agent {
+                    label 'docker'
+            }
     
     environment {
         REGISTRY = "registry.projectweek.be"
@@ -7,9 +10,7 @@ pipeline {
     }
     stages {
             stage('Build Docker Image'){
-            agent {
-                    label 'docker'
-            }
+            
             steps{
                 script {
                     DOCKER_IMAGE = docker.build "${REGISTRY}/${PROJECT_NAME}:dev"
@@ -18,11 +19,5 @@ pipeline {
                 }
             }
             }
-        
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
 }
 }
