@@ -28,23 +28,25 @@ pipeline {
                 }
             }
 
-            if(env.BRANCH_NAME == 'master'){
-                stage("Build Docker Image for production"){
-                    steps{
-                        script {
-                            DOCKER_IMAGE = docker.build "${REGISTRY}/${PROJECT_NAME}:latest"
-                            DOCKER_IMAGE.push()
-                            sh 'sleep 10'
-                        }
-                    }
-                }
-                stage("Deploy to production"){
-                    steps {
-                        script {
-                            sh 'curl -X POST http://projectweek.be:9000/api/webhooks/4263b39c-2aff-4818-9ef9-b38981d37c70'
-                        }
+            
+            stage("Build Docker Image for production"){
+                when { branch 'master' }
+                steps{
+                    script {
+                        DOCKER_IMAGE = docker.build "${REGISTRY}/${PROJECT_NAME}:latest"
+                        DOCKER_IMAGE.push()
+                        sh 'sleep 10'
                     }
                 }
             }
+            stage("Deploy to production"){
+                when { branch 'master' }
+                steps {
+                    script {
+                        sh 'curl -X POST http://projectweek.be:9000/api/webhooks/4263b39c-2aff-4818-9ef9-b38981d37c70'
+                    }
+                }
+            }
+            
     }
 }
